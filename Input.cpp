@@ -44,6 +44,39 @@ double NormalInput(){
    return c;
 }
 
+double Gradient(){
+  double g;
+  std::cout<<"enter gradient"<<std::endl;
+  std::cin>>g;
+  while(!std::cin){ //input validation
+    std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
+    std::cout<<"enter gradient"<<std::endl;
+    std::cin.clear();
+    std::cin.ignore(INT_MAX, '\n');
+    std::cin>>g;
+  }
+  return g;
+}
+
+double Constant(){
+  double I;
+  std::cout<<"enter constant"<<std::endl;
+  std::cin>>I;
+  while(!std::cin){ //input validation
+    std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
+    std::cout<<"enter constant"<<std::endl;
+    std::cin.clear();
+    std::cin.ignore(INT_MAX, '\n');
+    std::cin>>I;
+  }
+  return I;
+}
+
+double CalcIntercept(double x, double y){
+  double z;
+  z=((-1)*y)/x;
+  return z;
+}
 
 int main(){
  double a;
@@ -53,31 +86,9 @@ int main(){
  std:: string minus="-";
  std:: string times="*";
  std:: string divide="/";
+ std:: string line="intercept";
  std:: string quit="q";
  do{
-   /*std::cout<<"enter number 1"<<std::endl; //enter first number
-   std::cin>>a;
-   
-   while(!std::cin){ //input validation
-     std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
-     std::cout<<"enter number 1"<<std::endl;
-     std::cin.clear();
-     std::cin.ignore(INT_MAX,'\n');
-     std::cin>>a;
-     
-   } 
-   
-   std::cout<<"enter number 2"<<std::endl; //enter second number
-   std::cin>>b;
-
-   while(!std::cin){ //input validation
-   std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;  
-   std::cout<<"enter number 2"<<std::endl;
-   std::cin.clear();
-   std::cin.ignore(INT_MAX,'\n');
-   std::cin>>b;
-   
-   }*/
  
    std::cout<<"enter operator"<<std::endl;
    std::cin>>operation;               //fill operator string;
@@ -102,10 +113,16 @@ int main(){
      b=NormalInput();
      print(over(a,b));
    }
+   if(operation.compare(line)==0){    //calculate line intercept
+     a=Gradient();
+     b=Constant();
+     print(CalcIntercept(a,b));
+   }
+	 
    if(operation.compare(quit)==0){
      break;
    }
-   if((operation.compare(plus)!=0)&&(operation.compare(minus)!=0)&&(operation.compare(times)!=0)&&(operation.compare(divide)!=0)){
+   if((operation.compare(plus)!=0)&&(operation.compare(minus)!=0)&&(operation.compare(times)!=0)&&(operation.compare(divide)!=0)&&(operation.compare(line))){
      std::cout<<"a=  "<<a<<"  b=   "<<b<<std::endl;  //default option if operator incorrect
    }
  }while(1);
