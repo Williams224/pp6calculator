@@ -2,6 +2,7 @@
 #include<string>
 #include<climits>
 #include<cmath>
+#include<vector>
 //using namespace std;
 double multiply(double x, double y){
   return x*y;
@@ -29,14 +30,14 @@ void print(double z){
   std::cout<<"answer=    "<<z<<std::endl;
 }
 
-double NormalInput(){
+double NormalInput(std::string str){
   double c;
-  std::cout<<"enter number 1"<<std::endl; //enter first number
+  std::cout<<"enter "<<str<<std::endl; //enter first number
    std::cin>>c;
    
    while(!std::cin){ //input validation
      std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
-     std::cout<<"enter number 1"<<std::endl;
+     std::cout<<"enter number "<<std::endl;
      std::cin.clear();
      std::cin.ignore(INT_MAX,'\n');
      std::cin>>c;
@@ -91,10 +92,40 @@ double CalcQuadraticN(double x, double y, double z){
   return Out;
 }
 
+double VectorSize(){
+  int V;
+  std::cout<<"enter length of vector"<<std::endl;
+  std::cin>>V;
+  while(!std::cin){ //input validation
+    std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
+    std::cout<<"enter length of vector"<<std::endl;
+    std::cin.clear();
+    std::cin.ignore(INT_MAX, '\n');
+    std::cin>>V;
+  }
+  return V;
+}
+
+double ThreeLength(double i, double j, double k){
+  double Out;
+  Out=sqrt((i*i)+(j*j)+(k*k));
+  return Out;
+}
+
+double FourLength(double i,double j, double k, double l){
+  double Out;
+  Out= sqrt((i*i)-(j*j)-(k*k)-(l*l));
+  return Out;
+}
+
+
 int main(){
  double a;
  double b;
  double c;
+ double d;
+ double v;
+ //vector<double> V;
  std::string operation;
  std::string plus="+";
  std:: string minus="-";
@@ -103,29 +134,31 @@ int main(){
  std:: string line="intercept";
  std:: string quit="q";
  std:: string quad="quadratic";
+ std:: string vec="vector";
+
  do{
  
    std::cout<<"enter operator"<<std::endl;
    std::cin>>operation;               //fill operator string;
  
    if(operation.compare(plus)==0){ //perform addition
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("number one");
+     b=NormalInput("number two");
      print(add(a,b));
    }
    if(operation.compare(minus)==0){ //perform subtraction
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("number one");
+     b=NormalInput("number two");
      print(take(a,b));
    }
    if(operation.compare(times)==0){  //perform times
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("number one");
+     b=NormalInput("number two");
      print(multiply(a,b));
    }
    if(operation.compare(divide)==0){ //peform divide
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("number one");
+     b=NormalInput("number two(can not be 0)");
      print(over(a,b));
    }
    if(operation.compare(line)==0){    //calculate line intercept
@@ -133,22 +166,38 @@ int main(){
      b=Constant();
      print(CalcIntercept(a,b));
    }
-   if(operation.compare(quad)==0){
-     a=NormalInput();
-     b=NormalInput();
-     c=NormalInput();
+   if(operation.compare(quad)==0){ //solve a quadratic
+     a=NormalInput("a term");
+     b=NormalInput("b term");
+     c=NormalInput("c term");
      std::cout<<a<<"x^2+"<<b<<"x"<<"+"<<c<<std::endl;
      std::cout<<"positive solution=   "<<std::endl;
      print(CalcQuadraticP(a,b,c));
      std::cout<<"negative solution=    "<<std::endl;
      print(CalcQuadraticN(a,b,c));
    }
+   if(operation.compare(vec)==0){
+     v=VectorSize();
+     if(v==3){
+       a=NormalInput("component 1");
+       b=NormalInput("component 2");
+       c=NormalInput("component 3");
+       print(ThreeLength(a,b,c));
+     }
+     if(v==4){
+       a=NormalInput("time component");
+       b=NormalInput("x component");
+       c=NormalInput("y component");
+       d=NormalInput("z component");
+       print(FourLength(a,b,c,d));
+     }
+   }
 	 
    if(operation.compare(quit)==0){
      break;
    }
    if((operation.compare(plus)!=0)&&(operation.compare(minus)!=0)&&(operation.compare(times)!=0)&&(operation.compare(divide)!=0)&&(operation.compare(line))&&(operation.compare(quad))){
-     std::cout<<"a=  "<<a<<"  b=   "<<b<<std::endl;  //default option if operator incorrect
+     std::cout<<"a=  "<<a<<"  b=   "<<b<<"  c=   "<<c<<std::endl;  //default option if operator incorrect
    }
  }while(1);
  return 0;
