@@ -1,1 +1,10 @@
-#comment
+*~
+*.swp
+
+.DS_Store?
+
+*.o
+*.so
+*.a
+*.dylib
+*.py
