@@ -29,14 +29,14 @@ void print(double z){
   std::cout<<"answer=    "<<z<<std::endl;
 }
 
-double NormalInput(){
+double NormalInput(std::string str){
   double c;
-  std::cout<<"enter number 1"<<std::endl; //enter first number
+  std::cout<<"enter "<<str<<std::endl; //enter first number
    std::cin>>c;
    
    while(!std::cin){ //input validation
      std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
-     std::cout<<"enter number 1"<<std::endl;
+     std::cout<<"enter "<<str<<std::endl;
      std::cin.clear();
      std::cin.ignore(INT_MAX,'\n');
      std::cin>>c;
@@ -109,23 +109,23 @@ int main(){
    std::cin>>operation;               //fill operator string;
  
    if(operation.compare(plus)==0){ //perform addition
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("Number");
+     b=NormalInput("Number");
      print(add(a,b));
    }
    if(operation.compare(minus)==0){ //perform subtraction
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("Number");
+     b=NormalInput("Number");
      print(take(a,b));
    }
    if(operation.compare(times)==0){  //perform times
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("Number");
+     b=NormalInput("Number");
      print(multiply(a,b));
    }
    if(operation.compare(divide)==0){ //peform divide
-     a=NormalInput();
-     b=NormalInput();
+     a=NormalInput("Number");
+     b=NormalInput("Number");
      print(over(a,b));
    }
    if(operation.compare(line)==0){    //calculate line intercept
@@ -134,9 +134,9 @@ int main(){
      print(CalcIntercept(a,b));
    }
    if(operation.compare(quad)==0){
-     a=NormalInput();
-     b=NormalInput();
-     c=NormalInput();
+     a=NormalInput("second order coefficient");
+     b=NormalInput("first order coefficient");
+     c=NormalInput("zeroth order coefficient");
      std::cout<<a<<"x^2+"<<b<<"x"<<"+"<<c<<std::endl;
      std::cout<<"positive solution=   "<<std::endl;
      print(CalcQuadraticP(a,b,c));
