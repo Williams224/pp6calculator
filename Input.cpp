@@ -2,6 +2,33 @@
 #include<string>
 #include<climits>
 //using namespace std;
+double multiply(double x, double y){
+  return x*y;
+}
+
+double add(double x, double y){
+  return (x+y);
+}
+
+double take(double x,double y){
+  return (x-y);
+}
+
+double over(double x,double y){
+  if(y!=0){
+    return x/y;
+  }
+  else{
+    std::cout<<"can not divide by 0"<<std::endl;
+    return 0;
+  }
+}
+
+void print(double z){
+  std::cout<<"answer=    "<<z<<std::endl;
+}
+  
+
 
 int main(){
  double a;
@@ -41,16 +68,20 @@ int main(){
    std::cin>>operation;               //fill operator string;
  
    if(operation.compare(plus)==0){ //perform addition
-     std::cout<<" a+b= "<<a+b<<std::endl;
+     //std::cout<<" a+b= "<<a+b<<std::endl;
+     print(add(a,b));
    }
    if(operation.compare(minus)==0){ //perform subtraction
-    std::cout<<" a-b= "<<a-b<<std::endl;
+     //std::cout<<" a-b= "<<a-b<<std::endl;
+     print(take(a,b));
    }
    if(operation.compare(times)==0){  //perform times
-     std::cout<<" a*b ="<<a*b<<std::endl;
+     //std::cout<<" a*b ="<<a*b<<std::endl;
+     print(multiply(a,b));
    }
    if(operation.compare(divide)==0){ //peform divide
-     std::cout<<" a/b ="<<a/b<<std::endl;
+     //std::cout<<" a/b ="<<a/b<<std::endl;
+     print(over(a,b));
    }
    if(operation.compare(quit)==0){
      break;
