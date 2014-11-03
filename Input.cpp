@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<climits>
+#include<cmath>
 //using namespace std;
 double multiply(double x, double y){
   return x*y;
@@ -78,9 +79,22 @@ double CalcIntercept(double x, double y){
   return z;
 }
 
+double CalcQuadraticP(double x, double y, double z){
+  double Out;
+  Out=(((-1)*y)+sqrt((y*y)-(4*x*z))/(2*x));
+  return Out;
+}
+
+double CalcQuadraticN(double x, double y, double z){
+   double Out;
+  Out=(((-1)*y)-sqrt((y*y)-(4*x*z))/(2*x));
+  return Out;
+}
+
 int main(){
  double a;
  double b;
+ double c;
  std::string operation;
  std::string plus="+";
  std:: string minus="-";
@@ -88,6 +102,7 @@ int main(){
  std:: string divide="/";
  std:: string line="intercept";
  std:: string quit="q";
+ std:: string quad="quadratic";
  do{
  
    std::cout<<"enter operator"<<std::endl;
@@ -118,11 +133,21 @@ int main(){
      b=Constant();
      print(CalcIntercept(a,b));
    }
+   if(operation.compare(quad)==0){
+     a=NormalInput();
+     b=NormalInput();
+     c=NormalInput();
+     std::cout<<a<<"x^2+"<<b<<"x"<<"+"<<c<<std::endl;
+     std::cout<<"positive solution=   "<<std::endl;
+     print(CalcQuadraticP(a,b,c));
+     std::cout<<"negative solution=    "<<std::endl;
+     print(CalcQuadraticN(a,b,c));
+   }
 	 
    if(operation.compare(quit)==0){
      break;
    }
-   if((operation.compare(plus)!=0)&&(operation.compare(minus)!=0)&&(operation.compare(times)!=0)&&(operation.compare(divide)!=0)&&(operation.compare(line))){
+   if((operation.compare(plus)!=0)&&(operation.compare(minus)!=0)&&(operation.compare(times)!=0)&&(operation.compare(divide)!=0)&&(operation.compare(line))&&(operation.compare(quad))){
      std::cout<<"a=  "<<a<<"  b=   "<<b<<std::endl;  //default option if operator incorrect
    }
  }while(1);
