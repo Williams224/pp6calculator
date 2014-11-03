@@ -125,6 +125,7 @@ int main(){
  double c;
  double d;
  double v;
+ double n;
  //vector<double> V;
  std::string operation;
  std::string plus="+";
@@ -135,7 +136,7 @@ int main(){
  std:: string quit="q";
  std:: string quad="quadratic";
  std:: string vec="vector";
-
+ std:: string Mass="mass";
  do{
  
    std::cout<<"enter operator"<<std::endl;
@@ -192,7 +193,15 @@ int main(){
        print(FourLength(a,b,c,d));
      }
    }
-	 
+   if(operation.compare(Mass)==0){
+     n=NormalInput("number of daughter particles");
+     a=NormalInput("Energy");
+     b=NormalInput("px");
+     c=NormalInput("py");
+     d=NormalInput("pz");
+     print(FourLength(a,b,c,d));
+   }
+
    if(operation.compare(quit)==0){
      break;
    }
