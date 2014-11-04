@@ -37,7 +37,10 @@ double NormalInput(std::string str){
    
    while(!std::cin){ //input validation
      std::cout<<"incorrect input, stop trying to break my programme!"<<std::endl;
+
      std::cout<<"enter number "<<std::endl;
+
+     std::cout<<"enter "<<str<<std::endl;
      std::cin.clear();
      std::cin.ignore(INT_MAX,'\n');
      std::cin>>c;
@@ -143,6 +146,7 @@ int main(){
    std::cin>>operation;               //fill operator string;
  
    if(operation.compare(plus)==0){ //perform addition
+
      a=NormalInput("number one");
      b=NormalInput("number two");
      print(add(a,b));
@@ -160,17 +164,22 @@ int main(){
    if(operation.compare(divide)==0){ //peform divide
      a=NormalInput("number one");
      b=NormalInput("number two(can not be 0)");
-     print(over(a,b));
+
+     a=NormalInput("Number");
+     b=NormalInput("Number");
+     print(add(a,b));
    }
+
    if(operation.compare(line)==0){    //calculate line intercept
      a=Gradient();
      b=Constant();
      print(CalcIntercept(a,b));
    }
-   if(operation.compare(quad)==0){ //solve a quadratic
-     a=NormalInput("a term");
-     b=NormalInput("b term");
-     c=NormalInput("c term");
+
+   if(operation.compare(quad)==0){
+     a=NormalInput("second order coefficient");
+     b=NormalInput("first order coefficient");
+     c=NormalInput("zeroth order coefficient");
      std::cout<<a<<"x^2+"<<b<<"x"<<"+"<<c<<std::endl;
      std::cout<<"positive solution=   "<<std::endl;
      print(CalcQuadraticP(a,b,c));
@@ -211,3 +220,5 @@ int main(){
  }while(1);
  return 0;
 }
+ 
+
