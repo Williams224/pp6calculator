@@ -140,6 +140,7 @@ int main(){
  std:: string quad="quadratic";
  std:: string vec="vector";
  std:: string Mass="mass";
+ bool matched=false;
  do{
  
    std::cout<<"enter operator"<<std::endl;
@@ -150,16 +151,19 @@ int main(){
      a=NormalInput("number one");
      b=NormalInput("number two");
      print(add(a,b));
+     matched=true;
    }
    if(operation.compare(minus)==0){ //perform subtraction
      a=NormalInput("number one");
      b=NormalInput("number two");
      print(take(a,b));
+     matched=true;
    }
    if(operation.compare(times)==0){  //perform times
      a=NormalInput("number one");
      b=NormalInput("number two");
      print(multiply(a,b));
+     matched=true;
    }
    if(operation.compare(divide)==0){ //peform divide
      a=NormalInput("number one");
@@ -168,12 +172,14 @@ int main(){
      a=NormalInput("Number");
      b=NormalInput("Number");
      print(add(a,b));
+     matched=true;
    }
 
    if(operation.compare(line)==0){    //calculate line intercept
      a=Gradient();
      b=Constant();
      print(CalcIntercept(a,b));
+     matched=true;
    }
 
    if(operation.compare(quad)==0){
@@ -185,9 +191,11 @@ int main(){
      print(CalcQuadraticP(a,b,c));
      std::cout<<"negative solution=    "<<std::endl;
      print(CalcQuadraticN(a,b,c));
+     matched=true;
    }
    if(operation.compare(vec)==0){
      v=VectorSize();
+     matched=true;
      if(v==3){
        a=NormalInput("component 1");
        b=NormalInput("component 2");
@@ -201,21 +209,33 @@ int main(){
        d=NormalInput("z component");
        print(FourLength(a,b,c,d));
      }
+     if((v!=3)&&(v!=4)){
+       std::cout<<"sorry only supports vectors of length 3 and 4"<<std::endl;
+      }
    }
    if(operation.compare(Mass)==0){
+     matched=true;
+     a=0;
+     b=0;
+     c=0;
+     d=0;
      n=NormalInput("number of daughter particles");
-     a=NormalInput("Energy");
-     b=NormalInput("px");
-     c=NormalInput("py");
-     d=NormalInput("pz");
+     for(int i=0; i<n;i++){
+       a+=NormalInput("Energy");
+       b+=NormalInput("px");
+       c+=NormalInput("py");
+       d+=NormalInput("pz");
+     }
      print(FourLength(a,b,c,d));
    }
 
    if(operation.compare(quit)==0){
+     matched=true;
      break;
    }
-   if((operation.compare(plus)!=0)&&(operation.compare(minus)!=0)&&(operation.compare(times)!=0)&&(operation.compare(divide)!=0)&&(operation.compare(line))&&(operation.compare(quad))){
-     std::cout<<"a=  "<<a<<"  b=   "<<b<<"  c=   "<<c<<std::endl;  //default option if operator incorrect
+   if(matched==false){
+     std::cout<<"that is not a valid operator"<<std::endl;
+     // std::cout<<"a=  "<<a<<"  b=   "<<b<<"  c=   "<<c<<std::endl;  //default option if operator incorrect
    }
  }while(1);
  return 0;
