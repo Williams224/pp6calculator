@@ -121,7 +121,6 @@ double FourLength(double i,double j, double k, double l){
   return Out;
 }
 
-
 int main(){
  double a;
  double b;
@@ -140,10 +139,11 @@ int main(){
  std:: string quad="quadratic";
  std:: string vec="vector";
  std:: string Mass="mass";
+ std:: string Help="help";
 
  do{
    bool matched=false;
-   std::cout<<"enter operator"<<std::endl;
+   std::cout<<"enter operator (type help for help)"<<std::endl;
    std::cin>>operation;               //fill operator string;
  
    if(operation.compare(plus)==0){ //perform addition
@@ -227,6 +227,22 @@ int main(){
        d+=NormalInput("pz");
      }
      print(FourLength(a,b,c,d));
+   }
+   
+   if(operation.compare(Help)==0){
+     std::cout<<"Operator options are:- "<<std::endl;
+     std::cout<<plus<<std::endl;
+     std::cout<<minus<<std::endl;
+     std:: cout<< times<<std::endl;
+     std:: cout<< divide<<std::endl;
+     std:: cout<< line<<std::endl;
+     std:: cout<< quit<<std::endl;
+     std:: cout<< quad<<std::endl;
+     std:: cout<< vec<<std::endl;
+     std:: cout<< Mass<<std::endl;
+     std:: cout<< Help<<std::endl;
+     std::cout<< " type 'q' to quit "<<std::endl;
+
    }
 
    if(operation.compare(quit)==0){
