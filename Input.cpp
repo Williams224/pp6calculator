@@ -140,9 +140,9 @@ int main(){
  std:: string quad="quadratic";
  std:: string vec="vector";
  std:: string Mass="mass";
- bool matched=false;
+
  do{
- 
+   bool matched=false;
    std::cout<<"enter operator"<<std::endl;
    std::cin>>operation;               //fill operator string;
  
