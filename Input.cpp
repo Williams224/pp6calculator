@@ -78,9 +78,9 @@ double Constant(){
 }
 
 double CalcIntercept(double x, double y){
-  double z;
-  z=((-1)*y)/x;
-  return z;
+  //double z;
+  //z=;
+  return ((-1)*y)/x ;
 }
 
 double CalcQuadraticP(double x, double y, double z){
@@ -96,12 +96,13 @@ double CalcQuadraticN(double x, double y, double z){
 }
 
 bool NewQuadratic(double x, double y, double z,double& p, double& n ){
-  if((((y*y)-(4*x*z)))<0){
+  double discriminant=(y*y)-(4*x*z);
+  if(discriminant<0){
     return false;
   }
   else{
-  n=(((-1)*y)-sqrt((y*y)-(4*x*z))/(2*x));
-  p=(((-1)*y)+sqrt((y*y)-(4*x*z))/(2*x));
+  n=(((-1)*y)-sqrt(discriminant)/(2*x));
+  p=(((-1)*y)+sqrt(discriminant)/(2*x));
   return true;
   }
 }
@@ -121,15 +122,15 @@ double VectorSize(){
 }
 
 double ThreeLength(double i, double j, double k){
-  double Out;
-  Out=sqrt((i*i)+(j*j)+(k*k));
-  return Out;
+  //double Out;
+  //Out=;
+  return (sqrt((i*i)+(j*j)+(k*k)));
 }
 
 double FourLength(double i,double j, double k, double l){
-  double Out;
-  Out= sqrt((i*i)-(j*j)-(k*k)-(l*l));
-  return Out;
+  //double Out;
+  //Out= ;
+  return (sqrt((i*i)-(j*j)-(k*k)-(l*l)));
 }
 
 void Swap(double& x, double& y){
