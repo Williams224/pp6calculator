@@ -5,8 +5,10 @@
 #include<vector>
 #include<stdlib.h>
 #include<time.h>
-#include "Math.hpp"
 #include "Week1.hpp"
+#include "Week2.hpp"
+//#include "Stat.hpp"
+
 //#include "Math.hpp"
 
 
@@ -14,10 +16,10 @@
 //----------------------main-------------------------------
 int main(){
   std:: string s="stat";
-  std:: string c="calc";
+  std:: string c="math";
   std::string week;
   std::cout<<" Input options are: "<<std::endl;
-  std::cout<<"Calculator [calc] "<<std::endl;
+  std::cout<<"Calculator [math] "<<std::endl;
   std::cout<<"Statistical [stat] "<<std::endl;
   std::cin>>week;
   bool match=false;
@@ -26,7 +28,7 @@ int main(){
     match=true;
   }
   if(week.compare(s)==0){
-    //do something
+    Week2();
     match=true;
   }
   if(match==false){
