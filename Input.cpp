@@ -95,6 +95,17 @@ double CalcQuadraticN(double x, double y, double z){
   return Out;
 }
 
+bool NewQuadratic(double x, double y, double z,double& p, double& n ){
+  if((((y*y)-(4*x*z)))<0){
+    return false;
+  }
+  else{
+  n=(((-1)*y)-sqrt((y*y)-(4*x*z))/(2*x));
+  p=(((-1)*y)+sqrt((y*y)-(4*x*z))/(2*x));
+  return true;
+  }
+}
+
 double VectorSize(){
   int V;
   std::cout<<"enter length of vector"<<std::endl;
@@ -122,13 +133,17 @@ double FourLength(double i,double j, double k, double l){
 }
 
 void Swap(double& x, double& y){
-  int remx;
-  int remy;
-  remx=x;
-  remy=y;
-  x=remy;
-  y=remx; 
+  double rem;
+  //double rem;
+  rem=x;
+  x=y;
+  y=rem;
+  //remy=y;
+  //x=remy;
+  //y=remx; 
 }
+
+
 
 int main(){
  double a;
@@ -139,6 +154,8 @@ int main(){
  double n;
  double swapme;
  double swapme2;
+ double psolution;
+ double nsolution;
  //vector<double> V;
  std::string operation;
  std::string plus="+";
@@ -204,10 +221,16 @@ int main(){
      b=NormalInput("first order coefficient");
      c=NormalInput("zeroth order coefficient");
      std::cout<<a<<"x^2+"<<b<<"x"<<"+"<<c<<std::endl;
-     std::cout<<"positive solution=   "<<std::endl;
-     print(CalcQuadraticP(a,b,c));
-     std::cout<<"negative solution=    "<<std::endl;
-     print(CalcQuadraticN(a,b,c));
+     if(NewQuadratic(a,b,c,psolution,nsolution)==true){
+       std::cout<<"positive solution= "<<psolution<<" negative solution=  "<<nsolution<<std::endl;
+     }
+     else if(NewQuadratic(a,b,c,psolution,nsolution)==false){
+       std::cout<<" no solution"<<std::endl;
+     }
+     //std::cout<<"positive solution=   "<<std::endl;
+     // print(CalcQuadraticP(a,b,c));
+     //std::cout<<"negative solution=    "<<std::endl;
+     //print(CalcQuadraticN(a,b,c));
      matched=true;
    }
    if(operation.compare(vec)==0){
