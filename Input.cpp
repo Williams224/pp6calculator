@@ -13,9 +13,26 @@
 
 //----------------------main-------------------------------
 int main(){
- 
-
- Week1();
+  std:: string s="stat";
+  std:: string c="calc";
+  std::string week;
+  std::cout<<" Input options are: "<<std::endl;
+  std::cout<<"Calculator [calc] "<<std::endl;
+  std::cout<<"Statistical [stat] "<<std::endl;
+  std::cin>>week;
+  bool match=false;
+  if(week.compare(c)==0){
+    Week1();
+    match=true;
+  }
+  if(week.compare(s)==0){
+    //do something
+    match=true;
+  }
+  if(match==false){
+    std::cout<<"sorry not an option"<<std::endl;
+  }
+  
 
 
  return 0;
