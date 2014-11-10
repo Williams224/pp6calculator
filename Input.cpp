@@ -3,6 +3,8 @@
 #include<climits>
 #include<cmath>
 #include<vector>
+#include<stdlib.h>
+#include<time.h>
 //using namespace std;
 double multiply(double x, double y){
   return x*y;
@@ -144,6 +146,29 @@ void Swap(double& x, double& y){
   //y=remx; 
 }
 
+void PrintArray(int n,double *A){
+  for(int i=0;i<n;++i){
+    std::cout<<A[i]<<std::endl;
+  }
+}
+
+void SortArray(int n, double *A){
+  bool notsorted;
+  do{
+    notsorted=false;
+    for(int j=0;j<(n-1);++j){
+      if(A[j]<A[j+1]){
+	double r;
+	r=A[j];
+	A[j]=A[j+1];
+	A[j+1]=r;
+	notsorted=true;
+      }
+
+    }
+  }
+  while(notsorted==true);
+}
 
 
 int main(){
@@ -157,6 +182,7 @@ int main(){
  double swapme2;
  double psolution;
  double nsolution;
+ double tobesorted[20];
  //vector<double> V;
  std::string operation;
  std::string plus="+";
@@ -169,9 +195,17 @@ int main(){
  std:: string vec="vector";
  std:: string Mass="mass";
  std:: string Help="help";
-
+ srand(time(NULL));
  swapme=5;
  swapme2=10;
+ for(int i=0;i<20;++i){
+   tobesorted[i]=1+rand()%50;
+   std::cout<<tobesorted[i]<<std::endl;
+ }
+ SortArray(20,tobesorted);
+ std::cout<<"-------------------"<<std::endl;
+ PrintArray(20,tobesorted);
+ 
 
  std::cout<<"before: swapme= "<<swapme<<" swapme2=  "<<swapme2<<std::endl;
  Swap(swapme, swapme2);
