@@ -121,6 +121,15 @@ double FourLength(double i,double j, double k, double l){
   return Out;
 }
 
+void Swap(double& x, double& y){
+  int remx;
+  int remy;
+  remx=x;
+  remy=y;
+  x=remy;
+  y=remx; 
+}
+
 int main(){
  double a;
  double b;
@@ -128,6 +137,8 @@ int main(){
  double d;
  double v;
  double n;
+ double swapme;
+ double swapme2;
  //vector<double> V;
  std::string operation;
  std::string plus="+";
@@ -141,6 +152,12 @@ int main(){
  std:: string Mass="mass";
  std:: string Help="help";
 
+ swapme=5;
+ swapme2=10;
+
+ std::cout<<"before: swapme= "<<swapme<<" swapme2=  "<<swapme2<<std::endl;
+ Swap(swapme, swapme2);
+ std::cout<<"after: swapme=  "<<swapme<<" swapme2=  "<<swapme2<<std::endl;
  do{
    bool matched=false;
    std::cout<<"enter operator (type help for help)"<<std::endl;
