@@ -30,6 +30,8 @@ double FourLength(double i,double j, double k, double l);
 
 void Swap(double& x, double& y);
 
+void IntSwap(int& x, int& y);
+
 void PrintArray(int n,double *A);
 
 void SortArray(int n, double *A);

@@ -51,6 +51,22 @@ double IMass(int i, int j,double *X1, double *Y1, double *Z1, double *E1, double
   return sqrt(Sq);
 }
 
+void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){
+  bool notsorted;
+  do{
+    notsorted=false;
+    for(int j=0;j<(n-1);++j){
+      if(Main[j]<Main[j+1]){
+	Swap(Main[j],Main[j+1]);
+	IntSwap(Linked1[j],Linked1[j+1]);
+	IntSwap(Linked2[j],Linked2[j+1]);
+	notsorted=true;
+      }
+
+    }
+  }
+  while(notsorted==true);
+}
   
 
 
@@ -87,6 +103,10 @@ void Week2(){
   std::string Muminus="mu-";
   std::string Run="run4.dat";
   double MuMass=0.106;
+  int H=0;
+  double InvMass[145];
+  int EvPlus[145];
+  int EvMinus[145];
   
   FileReader f("/home/tw/mpagspp6/pp6calculator.git/observedparticles.dat");
   srand(time(NULL));
@@ -102,7 +122,7 @@ void Week2(){
     }
     if(Operation.compare(D)==0){
       if(f.isValid()){
-	std::cout<<"file worked"<<std::endl;
+	//std::cout<<"file worked"<<std::endl;
 	while(f.nextLine()){
 	  Event[index]=f.getFieldAsInt(1);
 	  Name[index]=f.getFieldAsString(2);
@@ -114,7 +134,7 @@ void Week2(){
 	  index++;
 	}
       }
-      std::cout<<"index=  "<<index<<std::endl;
+      // std::cout<<"index=  "<<index<<std::endl;
       for(int z=0;z<=index;++z){
 	if(Source[z].compare(Run)==0){
 	  if(Name[z].compare(Muplus)==0){
@@ -127,7 +147,7 @@ void Week2(){
 	    Pselectindex++;
 	  }
 	  else if(Name[z].compare(Muminus)==0){
-	    NSelectedEvent[Pselectindex]=Event[z];
+	    NSelectedEvent[Nselectindex]=Event[z];
 	    NSelectedX[Nselectindex]=X[z];
 	    NSelectedY[Nselectindex]=Y[z];
 	    NSelectedZ[Nselectindex]=Z[z];
@@ -138,28 +158,48 @@ void Week2(){
 	}
       }
       
-      for(int j=0;j<Pselectindex;++j){
+      /*for(int j=0;j<Pselectindex;++j){
 	std::cout<<SelectedName[j]<<", "<<SelectedX[j]<<", "<<SelectedY[j]<<", "<<SelectedZ[j]<<", "<<SelectedEnergy[j]<<std::endl;
       }
       for(int k=0;k<Nselectindex;++k){
         std::cout<<NSelectedName[k]<<", "<<NSelectedX[k]<<", "<<NSelectedY[k]<<", "<<NSelectedZ[k]<<", "<<NSelectedEnergy[k]<<std::endl;
-      }
-      int cout=0;
+	}*/
+      //int cout=0;
       for(int a=0;a<Pselectindex;++a){
 	for(int b=0;b<Nselectindex;++b){
-	  std::cout<<IMass(a,b,SelectedX,SelectedY,SelectedZ,SelectedEnergy,NSelectedX,NSelectedY,NSelectedZ, NSelectedEnergy)<<std::endl;
-	  cout++;
+	  // std::cout<<IMass(a,b,SelectedX,SelectedY,SelectedZ,SelectedEnergy,NSelectedX,NSelectedY,NSelectedZ, NSelectedEnergy)<<std::endl;
+
+
+	  InvMass[H]=IMass(a,b,SelectedX,SelectedY,SelectedZ,SelectedEnergy,NSelectedX,NSelectedY,NSelectedZ, NSelectedEnergy);
+	  EvPlus[H]=SelectedEvent[a];
+	  EvMinus[H]=NSelectedEvent[b];
+	  H++;
+	  //cout++;
 	}
       }
-      std::cout<<cout<<std::endl;
-	  
+      //std::cout<<cout<<std::endl;
+      /*for(int l=0;l<(Pselectindex*Nselectindex);++l){
+	std::cout<<InvMass[l]<<" , "<<EvPlus[l]<<" , "<<EvMinus[l]<<std::endl;
+	}*/
+      LinkSortArray((Pselectindex*Nselectindex),InvMass,EvPlus,EvMinus);
+      //std::cout<<"-------------------sorting happens here=--------------"<<std::endl;
+
+      /* for(int l=0;l<(Pselectindex*Nselectindex);++l){
+	std::cout<<InvMass[l]<<" , "<<EvPlus[l]<<" , "<<EvMinus[l]<<std::endl;
+	}*/
+      
+      std::cout<<"----------Top 10 Invariant Masses----------"<<std::endl;
+      std::cout<<"Invariant mass |"<<" Mu+ EventNumber| "<<" Mu- EventNumber| "<<std::endl;
+      for(int v=0;v<10;++v){
+	std::cout<<InvMass[v]<<"       |  "<<EvPlus[v]<<"           |  "<<EvMinus[v]<<"           |  "<<std::endl;
+      }
       
 
     }
     if(Operation.compare(Quit)==0){
       break;
     }
-    std::cout<<" this is the week2 function"<<std::endl;
+    //std::cout<<" this is the week2 function"<<std::endl;
   }while(1);
 
 }

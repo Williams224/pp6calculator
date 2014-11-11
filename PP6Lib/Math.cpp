@@ -148,6 +148,14 @@ void Swap(double& x, double& y){
   //y=remx; 
 }
 
+void IntSwap(int& x, int& y){
+  int rem;
+  rem=x;
+  x=y;
+  y=rem;
+}
+
+
 void PrintArray(int n,double *A){
   for(int i=0;i<n;++i){
     std::cout<<A[i]<<std::endl;
