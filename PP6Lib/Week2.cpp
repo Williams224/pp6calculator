@@ -79,26 +79,25 @@ void Week2(){
   int Pselectindex=0;
   int Nselectindex=0;
   int M=0;
-  std::string Name[3000];
-  double X[3000];
-  double Y[3000];
-  double Z[3000];
-  //double Energy[3000];
-  std::string Source[3000];
-  int Event[3000];
-  std::string SelectedName[3000];
-  double SelectedX[3000];
-  double SelectedY[3000];
-  double SelectedZ[3000];
-  double SelectedEnergy[3000];
-  int SelectedEvent[3000];
-  std::string NSelectedName[3000];
-  double NSelectedX[3000];
-  double NSelectedY[3000];
-  double NSelectedZ[3000];
-  double NSelectedEnergy[3000];
-  int NSelectedEvent[3000];
-  // std::string SelectedSource[3000];
+  std::string Name[1005];
+  double X[1005];
+  double Y[1005];
+  double Z[1005];
+  std::string Source[1005];
+  int Event[1005];
+  std::string SelectedName[1005];
+  double SelectedX[1005];
+  double SelectedY[1005];
+  double SelectedZ[1005];
+  double SelectedEnergy[1005];
+  int SelectedEvent[1005];
+  std::string NSelectedName[1005];
+  double NSelectedX[1005];
+  double NSelectedY[1005];
+  double NSelectedZ[1005];
+  double NSelectedEnergy[1005];
+  int NSelectedEvent[1005];
+  // std::string SelectedSource[1005];
   std::string Muplus="mu+";
   std::string Muminus="mu-";
   std::string Run="run4.dat";
@@ -158,35 +157,16 @@ void Week2(){
 	}
       }
       
-      /*for(int j=0;j<Pselectindex;++j){
-	std::cout<<SelectedName[j]<<", "<<SelectedX[j]<<", "<<SelectedY[j]<<", "<<SelectedZ[j]<<", "<<SelectedEnergy[j]<<std::endl;
-      }
-      for(int k=0;k<Nselectindex;++k){
-        std::cout<<NSelectedName[k]<<", "<<NSelectedX[k]<<", "<<NSelectedY[k]<<", "<<NSelectedZ[k]<<", "<<NSelectedEnergy[k]<<std::endl;
-	}*/
-      //int cout=0;
+      
       for(int a=0;a<Pselectindex;++a){
 	for(int b=0;b<Nselectindex;++b){
-	  // std::cout<<IMass(a,b,SelectedX,SelectedY,SelectedZ,SelectedEnergy,NSelectedX,NSelectedY,NSelectedZ, NSelectedEnergy)<<std::endl;
-
-
 	  InvMass[H]=IMass(a,b,SelectedX,SelectedY,SelectedZ,SelectedEnergy,NSelectedX,NSelectedY,NSelectedZ, NSelectedEnergy);
 	  EvPlus[H]=SelectedEvent[a];
 	  EvMinus[H]=NSelectedEvent[b];
 	  H++;
-	  //cout++;
 	}
       }
-      //std::cout<<cout<<std::endl;
-      /*for(int l=0;l<(Pselectindex*Nselectindex);++l){
-	std::cout<<InvMass[l]<<" , "<<EvPlus[l]<<" , "<<EvMinus[l]<<std::endl;
-	}*/
       LinkSortArray((Pselectindex*Nselectindex),InvMass,EvPlus,EvMinus);
-      //std::cout<<"-------------------sorting happens here=--------------"<<std::endl;
-
-      /* for(int l=0;l<(Pselectindex*Nselectindex);++l){
-	std::cout<<InvMass[l]<<" , "<<EvPlus[l]<<" , "<<EvMinus[l]<<std::endl;
-	}*/
       
       std::cout<<"----------Top 10 Invariant Masses----------"<<std::endl;
       std::cout<<"Invariant mass |"<<" Mu+ EventNumber| "<<" Mu- EventNumber| "<<std::endl;
@@ -199,7 +179,6 @@ void Week2(){
     if(Operation.compare(Quit)==0){
       break;
     }
-    //std::cout<<" this is the week2 function"<<std::endl;
   }while(1);
 
 }
