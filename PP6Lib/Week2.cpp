@@ -56,7 +56,8 @@ void Week2(){
   double X[3000];
   double Y[3000];
   double Z[3000];
-  
+  double Energy[3000];
+  std::string Source[3000];
   
   FileReader f("/home/tw/mpagspp6/pp6calculator.git/observedparticles.dat");
   srand(time(NULL));
@@ -69,20 +70,17 @@ void Week2(){
     std::cin>>Operation;
     if(Operation.compare(G)==0){
       Gen();
-
+    }
+    if(Operation.compare(D)==0){
       if(f.isValid()){
 	std::cout<<"file worked"<<std::endl;
 	while(f.nextLine()){
-	  
-	  
-
-
-
+	  index=0;
+	  Name[index]=f.getFieldAsString(2);
+	  std::cout<<Name[index]<<",  ";
+	  index++;
 	}
       }
-    }
-    if(Operation.compare(D)==0){
-      
 
     }
     if(Operation.compare(Quit)==0){

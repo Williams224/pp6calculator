@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<string>
 #include<climits>
@@ -20,9 +21,9 @@ int main(){
   std:: string c="math";
   std:: string quit="q";
   std::string week;
-  FileReader F("observedparticles.dat");
+  //  FileReader F("observedparticles.dat");
   // if(F.isValid()){
-    std::cout<<"worked"<<std::endl;
+  //std::cout<<"worked"<<std::endl;
     //}
 
   do{
