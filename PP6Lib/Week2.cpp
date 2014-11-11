@@ -51,7 +51,14 @@ void Week2(){
   std::string D="data";
   std::string Quit="q";
   std::string Operation;
-  FileReader f("observedparticles.dat");
+  int index;
+  std::string Name[3000];
+  double X[3000];
+  double Y[3000];
+  double Z[3000];
+  
+  
+  FileReader f("/home/tw/mpagspp6/pp6calculator.git/observedparticles.dat");
   srand(time(NULL));
  
  
@@ -65,7 +72,14 @@ void Week2(){
 
       if(f.isValid()){
 	std::cout<<"file worked"<<std::endl;
+	while(f.nextLine()){
+	  
+	  
+
+
+
 	}
+      }
     }
     if(Operation.compare(D)==0){
       
