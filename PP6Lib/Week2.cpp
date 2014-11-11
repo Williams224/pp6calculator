@@ -52,18 +52,28 @@ void Week2(){
   std::string Quit="q";
   std::string Operation;
   int index=0;
-  int selectindex=0;
+  int Pselectindex=0;
+  int Nselectindex=0;
+  int M=0;
   std::string Name[3000];
   double X[3000];
   double Y[3000];
   double Z[3000];
   double Energy[3000];
   std::string Source[3000];
+  int Event[3000];
   std::string SelectedName[3000];
   double SelectedX[3000];
   double SelectedY[3000];
   double SelectedZ[3000];
   double SelectedEnergy[3000];
+  int SelectedEvent[3000];
+  std::string NSelectedName[3000];
+  double NSelectedX[3000];
+  double NSelectedY[3000];
+  double NSelectedZ[3000];
+  double NSelectedEnergy[3000];
+  int NSelectedEvent[3000];
   // std::string SelectedSource[3000];
   std::string Muplus="mu+";
   std::string Muminus="mu-";
@@ -86,30 +96,47 @@ void Week2(){
       if(f.isValid()){
 	std::cout<<"file worked"<<std::endl;
 	while(f.nextLine()){
+	  Event[index]=f.getFieldAsInt(1);
 	  Name[index]=f.getFieldAsString(2);
 	  X[index]=f.getFieldAsDouble(3);
 	  Y[index]=f.getFieldAsDouble(4);
 	  Z[index]=f.getFieldAsDouble(5);
 	  Source[index]=f.getFieldAsString(6);
-	  std::cout<<Name[index]<<",  "<<X[index]<<"  ,"<<Source[index]<<std::endl;
+	  //std::cout<<Name[index]<<",  "<<X[index]<<"  ,"<<Source[index]<<std::endl;
 	  index++;
 	}
       }
       std::cout<<"index=  "<<index<<std::endl;
       for(int z=0;z<=index;++z){
-	if(((Name[z].compare(Muplus)==0)||(Name[z].compare(Muminus)==0))&&(Source[z].compare(Run)==0)){
-	  SelectedX[selectindex]=X[z];
-	  SelectedY[selectindex]=Y[z];
-	  SelectedZ[selectindex]=Z[z];
-	  SelectedEnergy[selectindex]=Energy[z];
-	  SelectedName[selectindex]=Name[z];
-	  selectindex++;
+	if(Source[z].compare(Run)==0){
+	  if(Name[z].compare(Muplus)==0){
+	    SelectedEvent[Pselectindex]=Event[z];
+	    SelectedX[Pselectindex]=X[z];
+	    SelectedY[Pselectindex]=Y[z];
+	    SelectedZ[Pselectindex]=Z[z];
+	    SelectedEnergy[Pselectindex]=Energy[z];
+	    SelectedName[Pselectindex]=Name[z];
+	    Pselectindex++;
+	  }
+	  else if(Name[z].compare(Muminus)==0){
+	    NSelectedEvent[Pselectindex]=Event[z];
+	    NSelectedX[Nselectindex]=X[z];
+	    NSelectedY[Nselectindex]=Y[z];
+	    NSelectedZ[Nselectindex]=Z[z];
+	    NSelectedEnergy[Nselectindex]=Energy[z];
+	    NSelectedName[Nselectindex]=Name[z];
+	    Nselectindex++;
+	  }
 	}
       }
       
-      for(int j=0;j<=selectindex;++j){
+      for(int j=0;j<=Pselectindex;++j){
 	std::cout<<SelectedName[j]<<std::endl;
       }
+      for(int k=0;k<=Nselectindex;++k){
+	std::cout<<NSelectedName[k]<<std::endl;
+      }
+      
 	  
       
 
