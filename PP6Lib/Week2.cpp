@@ -45,6 +45,14 @@ void Gen(){
   std::cout<<"Mean = "<<Mean<<std::endl;
 }
 
+double IMass(int i, int j,double *X1, double *Y1, double *Z1, double *E1, double *X2, double *Y2, double *Z2, double *E2){
+  double Sq;
+  Sq=pow((E1[i]+E2[j]),2)-pow((X1[i]+X2[j]),2)-pow((Y1[i]+Y2[j]),2)-pow((Z1[i]+Z2[j]),2);
+  return sqrt(Sq);
+}
+
+  
+
 
 void Week2(){
   std::string G="gen";
@@ -59,7 +67,7 @@ void Week2(){
   double X[3000];
   double Y[3000];
   double Z[3000];
-  double Energy[3000];
+  //double Energy[3000];
   std::string Source[3000];
   int Event[3000];
   std::string SelectedName[3000];
@@ -78,7 +86,7 @@ void Week2(){
   std::string Muplus="mu+";
   std::string Muminus="mu-";
   std::string Run="run4.dat";
- 
+  double MuMass=0.106;
   
   FileReader f("/home/tw/mpagspp6/pp6calculator.git/observedparticles.dat");
   srand(time(NULL));
@@ -114,7 +122,7 @@ void Week2(){
 	    SelectedX[Pselectindex]=X[z];
 	    SelectedY[Pselectindex]=Y[z];
 	    SelectedZ[Pselectindex]=Z[z];
-	    SelectedEnergy[Pselectindex]=Energy[z];
+	    SelectedEnergy[Pselectindex]=sqrt(pow(X[z],2)+pow(Y[z],2)+pow(Z[z],2)+pow(MuMass,2));
 	    SelectedName[Pselectindex]=Name[z];
 	    Pselectindex++;
 	  }
@@ -123,20 +131,27 @@ void Week2(){
 	    NSelectedX[Nselectindex]=X[z];
 	    NSelectedY[Nselectindex]=Y[z];
 	    NSelectedZ[Nselectindex]=Z[z];
-	    NSelectedEnergy[Nselectindex]=Energy[z];
+	    NSelectedEnergy[Nselectindex]=sqrt(pow(X[z],2)+pow(Y[z],2)+pow(Z[z],2)+pow(MuMass,2));
 	    NSelectedName[Nselectindex]=Name[z];
 	    Nselectindex++;
 	  }
 	}
       }
       
-      for(int j=0;j<=Pselectindex;++j){
-	std::cout<<SelectedName[j]<<std::endl;
+      for(int j=0;j<Pselectindex;++j){
+	std::cout<<SelectedName[j]<<", "<<SelectedX[j]<<", "<<SelectedY[j]<<", "<<SelectedZ[j]<<", "<<SelectedEnergy[j]<<std::endl;
       }
-      for(int k=0;k<=Nselectindex;++k){
-	std::cout<<NSelectedName[k]<<std::endl;
+      for(int k=0;k<Nselectindex;++k){
+        std::cout<<NSelectedName[k]<<", "<<NSelectedX[k]<<", "<<NSelectedY[k]<<", "<<NSelectedZ[k]<<", "<<NSelectedEnergy[k]<<std::endl;
       }
-      
+      int cout=0;
+      for(int a=0;a<Pselectindex;++a){
+	for(int b=0;b<Nselectindex;++b){
+	  std::cout<<IMass(a,b,SelectedX,SelectedY,SelectedZ,SelectedEnergy,NSelectedX,NSelectedY,NSelectedZ, NSelectedEnergy)<<std::endl;
+	  cout++;
+	}
+      }
+      std::cout<<cout<<std::endl;
 	  
       
 
