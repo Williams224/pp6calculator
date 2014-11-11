@@ -17,27 +17,34 @@
 int main(){
   std:: string s="stat";
   std:: string c="math";
+  std:: string quit="q";
   std::string week;
-  std::cout<<" Input options are: "<<std::endl;
-  std::cout<<"Calculator [math] "<<std::endl;
-  std::cout<<"Statistical [stat] "<<std::endl;
-  std::cin>>week;
-  bool match=false;
-  if(week.compare(c)==0){
-    Week1();
-    match=true;
-  }
-  if(week.compare(s)==0){
-    Week2();
-    match=true;
-  }
-  if(match==false){
-    std::cout<<"sorry not an option"<<std::endl;
-  }
+
+  do{
+    std::cout<<" Input options are: "<<std::endl;
+    std::cout<<"Calculator [math] "<<std::endl;
+    std::cout<<"Statistical [stat] "<<std::endl;
+    std::cin>>week;
+    bool match=false;
+    if(week.compare(c)==0){
+      Week1();
+      match=true;
+    }
+    if(week.compare(s)==0){
+      Week2();
+      match=true;
+    }
+    if(week.compare(quit)==0){
+      break;
+    }
+    if(match==false){
+      std::cout<<"sorry not an option"<<std::endl;
+    }
+  }while(1);
   
 
 
- return 0;
+  return 0;
 }
  
 
