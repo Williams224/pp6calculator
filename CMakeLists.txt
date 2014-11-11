@@ -18,7 +18,7 @@ include_directories(PP6Lib)
 
 add_subdirectory(PP6Lib)
 
-add_executable(Input Input.cpp PP6Lib/Week2.hpp PP6Lib/Week2.cpp PP6Lib/Week1.hpp PP6Lib/Week1.cpp PP6Lib/Math.cpp PP6Lib/Math.hpp)
+add_executable(Input Input.cpp observedparticles.dat PP6Lib/observedparticles.dat PP6Lib/FileReader.cpp PP6Lib/FileReader.hpp PP6Lib/Week2.hpp PP6Lib/Week2.cpp PP6Lib/Week1.hpp PP6Lib/Week1.cpp PP6Lib/Math.cpp PP6Lib/Math.hpp)
 
 target_link_libraries(Input pp6lib)
 

@@ -5,6 +5,7 @@
 #include<vector>
 #include<stdlib.h>
 #include<time.h>
+#include "FileReader.hpp"
 #include "Week1.hpp"
 #include "Week2.hpp"
 //#include "Stat.hpp"
@@ -19,6 +20,10 @@ int main(){
   std:: string c="math";
   std:: string quit="q";
   std::string week;
+  FileReader F("observedparticles.dat");
+  // if(F.isValid()){
+    std::cout<<"worked"<<std::endl;
+    //}
 
   do{
     std::cout<<" Input options are: "<<std::endl;
