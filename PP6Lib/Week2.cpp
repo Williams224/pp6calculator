@@ -51,13 +51,24 @@ void Week2(){
   std::string D="data";
   std::string Quit="q";
   std::string Operation;
-  int index;
+  int index=0;
+  int selectindex=0;
   std::string Name[3000];
   double X[3000];
   double Y[3000];
   double Z[3000];
   double Energy[3000];
   std::string Source[3000];
+  std::string SelectedName[3000];
+  double SelectedX[3000];
+  double SelectedY[3000];
+  double SelectedZ[3000];
+  double SelectedEnergy[3000];
+  // std::string SelectedSource[3000];
+  std::string Muplus="mu+";
+  std::string Muminus="mu-";
+  std::string Run="run4.dat";
+ 
   
   FileReader f("/home/tw/mpagspp6/pp6calculator.git/observedparticles.dat");
   srand(time(NULL));
@@ -75,12 +86,32 @@ void Week2(){
       if(f.isValid()){
 	std::cout<<"file worked"<<std::endl;
 	while(f.nextLine()){
-	  index=0;
 	  Name[index]=f.getFieldAsString(2);
-	  std::cout<<Name[index]<<",  ";
+	  X[index]=f.getFieldAsDouble(3);
+	  Y[index]=f.getFieldAsDouble(4);
+	  Z[index]=f.getFieldAsDouble(5);
+	  Source[index]=f.getFieldAsString(6);
+	  std::cout<<Name[index]<<",  "<<X[index]<<"  ,"<<Source[index]<<std::endl;
 	  index++;
 	}
       }
+      std::cout<<"index=  "<<index<<std::endl;
+      for(int z=0;z<=index;++z){
+	if(((Name[z].compare(Muplus)==0)||(Name[z].compare(Muminus)==0))&&(Source[z].compare(Run)==0)){
+	  SelectedX[selectindex]=X[z];
+	  SelectedY[selectindex]=Y[z];
+	  SelectedZ[selectindex]=Z[z];
+	  SelectedEnergy[selectindex]=Energy[z];
+	  SelectedName[selectindex]=Name[z];
+	  selectindex++;
+	}
+      }
+      
+      for(int j=0;j<=selectindex;++j){
+	std::cout<<SelectedName[j]<<std::endl;
+      }
+	  
+      
 
     }
     if(Operation.compare(Quit)==0){
