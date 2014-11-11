@@ -145,8 +145,16 @@ void Swap(double& x, double& y){
   y=rem;
   //remy=y;
   //x=remy;
-q  //y=remx; 
+  //y=remx; 
 }
+
+void IntSwap(int& x, int& y){
+  int rem;
+  rem=x;
+  x=y;
+  y=rem;
+}
+
 
 void PrintArray(int n,double *A){
   for(int i=0;i<n;++i){
@@ -167,6 +175,41 @@ void SortArray(int n, double *A){
     }
   }
   while(notsorted==true);
+}
+
+void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){
+  bool notsorted;
+  do{
+    notsorted=false;
+    for(int j=0;j<(n-1);++j){
+      if(Main[j]<Main[j+1]){
+	Swap(Main[j],Main[j+1]);
+	IntSwap(Linked1[j],Linked1[j+1]);
+	IntSwap(Linked2[j],Linked2[j+1]);
+	notsorted=true;
+      }
+
+    }
+  }
+  while(notsorted==true);
+}
+
+
+void Average(int n, double *A, double& M){
+  double Sum;
+  for(int j=0;j<n;j++){
+    Sum+=A[j];
+  }
+  double N=n;
+  M=Sum/N;
+}
+double StandardDeviation(int n, double *A, double M){
+  double Sum;
+  for(int k=0;k<n;k++){
+    Sum+=(A[k]-M)*(A[k]-M); 
+  }
+  double N=n;
+  return (sqrt(Sum/N));
 }
 
 

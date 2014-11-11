@@ -5,22 +5,6 @@
 #include "FileReader.hpp"
 #include "Week2.hpp"
 
-void Average(int n, double *A, double& M){
-  double Sum;
-  for(int j=0;j<n;j++){
-    Sum+=A[j];
-  }
-  double N=n;
-  M=Sum/N;
-}
-double StandardDeviation(int n, double *A, double M){
-  double Sum;
-  for(int k=0;k<n;k++){
-    Sum+=(A[k]-M)*(A[k]-M); 
-  }
-  double N=n;
-  return (sqrt(Sum/N));
-}
 
 void Gen(){
   double Px[100];
@@ -36,9 +20,6 @@ void Gen(){
     M[i]=(1+rand()%1000)/10.0;
     E[i]=sqrt(((Px[i]*Px[i])+(Py[i]*Py[i])+(Pz[i]*Pz[i])+(M[i]*M[i])));
   }
-  //PrintArray(100,Px);
-  //PrintArray(100,Py);
-  //PrintArray(100,Pz);
   PrintArray(100,E);
   Average(100,E,Mean);
   std::cout<<"Standard Deviation= "<<(StandardDeviation(100,E,Mean))<<std::endl;
@@ -50,25 +31,7 @@ double IMass(int i, int j,double *X1, double *Y1, double *Z1, double *E1, double
   Sq=pow((E1[i]+E2[j]),2)-pow((X1[i]+X2[j]),2)-pow((Y1[i]+Y2[j]),2)-pow((Z1[i]+Z2[j]),2);
   return sqrt(Sq);
 }
-
-void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){
-  bool notsorted;
-  do{
-    notsorted=false;
-    for(int j=0;j<(n-1);++j){
-      if(Main[j]<Main[j+1]){
-	Swap(Main[j],Main[j+1]);
-	IntSwap(Linked1[j],Linked1[j+1]);
-	IntSwap(Linked2[j],Linked2[j+1]);
-	notsorted=true;
-      }
-
-    }
-  }
-  while(notsorted==true);
-}
   
-
 
 void Week2(){
   std::string G="gen";
@@ -97,7 +60,6 @@ void Week2(){
   double NSelectedZ[1005];
   double NSelectedEnergy[1005];
   int NSelectedEvent[1005];
-  // std::string SelectedSource[1005];
   std::string Muplus="mu+";
   std::string Muminus="mu-";
   std::string Run="run4.dat";

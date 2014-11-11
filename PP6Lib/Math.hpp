@@ -36,5 +36,13 @@ void PrintArray(int n,double *A);
 
 void SortArray(int n, double *A);
 
+void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2);
+
+void Average(int n, double *A, double& M);
+
+double StandardDeviation(int n, double *A, double M);
+
+
+
 
 #endif
