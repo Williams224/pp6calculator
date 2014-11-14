@@ -31,7 +31,7 @@ double over(double x,double y){
 }
 
 void print(double z){
-  std::cout<<"answer=    "<<z<<std::endl;
+  std::cout<<"answer=    "<<z<<std::endl; // print single double
 }
 
 double NormalInput(std::string str){
@@ -99,7 +99,7 @@ double CalcQuadraticN(double x, double y, double z){
   return Out;
   }*/
 
-bool NewQuadratic(double x, double y, double z,double& p, double& n ){
+bool NewQuadratic(double x, double y, double z,double& p, double& n ){  //single function for calculating roots of quadratics
   double discriminant=(y*y)-(4*x*z);
   if(discriminant<0){
     return false;
@@ -148,7 +148,7 @@ void Swap(double& x, double& y){
   //y=remx; 
 }
 
-void IntSwap(int& x, int& y){
+void IntSwap(int& x, int& y){  //swap two numbers, to be used in sort function.
   int rem;
   rem=x;
   x=y;
@@ -156,7 +156,7 @@ void IntSwap(int& x, int& y){
 }
 
 
-void PrintArray(int n,double *A){
+void PrintArray(int n,double *A){ //Print an array
   for(int i=0;i<n;++i){
     std::cout<<A[i]<<std::endl;
   }
@@ -177,7 +177,8 @@ void SortArray(int n, double *A){
   while(notsorted==true);
 }
 
-void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){
+void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){  // Sort the array name main but perform same operations to arrays Linked1 and Linked2 so
+                                                                      //if e.g Main[3] corresponds to the same thing as Linked1[3] they will still correspond after sorting.
   bool notsorted;
   do{
     notsorted=false;
@@ -195,7 +196,7 @@ void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){
 }
 
 
-void Average(int n, double *A, double& M){
+void Average(int n, double *A, double& M){  // pass an array, size of array and predefined mean.
   double Sum;
   for(int j=0;j<n;j++){
     Sum+=A[j];
@@ -203,7 +204,7 @@ void Average(int n, double *A, double& M){
   double N=n;
   M=Sum/N;
 }
-double StandardDeviation(int n, double *A, double M){
+double StandardDeviation(int n, double *A, double M){           //pass the mean, this will not be altered.
   double Sum;
   for(int k=0;k<n;k++){
     Sum+=(A[k]-M)*(A[k]-M); 
