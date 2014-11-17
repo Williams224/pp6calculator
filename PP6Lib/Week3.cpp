@@ -31,7 +31,11 @@ void Week3(){
      std::cin>>Z;
 
      FourVector *F= new FourVector(CT,X,Y,Z);
-     
+     FourVector A(CT,X,Y,Z);
+     FourVector B(4,3,2,1);
+     FourVector C;
+     C=A-B;
+     C.PrintFourVector();
   //output the four length of the input vector
   std::cout<<"Four length=  "<<F->GetInvariantLength()<<std::endl;
 

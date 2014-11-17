@@ -21,6 +21,8 @@ public:
   FourVector(){ct=0;x=0;y=0;z=0;};   //empty decleration
   FourVector(double ct_, double x_, double y_ , double z_)   //take input
     :ct(ct_),x(x_),y(y_),z(z_){I=InvariantLength();}
+  FourVector(const FourVector& tmp): ct(tmp.ct),x(tmp.x),y(tmp.y),z(tmp.z)
+  {}
   double GetInvariantLength()const ;
   //void SetFourVector();
   
@@ -28,7 +30,39 @@ public:
   void PrintFourVector() const;
   Like GetFourVectorType();
   
+  FourVector& operator+=(const FourVector& rhs){
+    ct+=rhs.ct;
+    x+=rhs.x;
+    y+=rhs.y;
+    z+=rhs.z;
+    return *this;
+  }
+  FourVector& operator-=(const FourVector& rhs){
+    ct-=rhs.ct;
+    x-=rhs.x;
+    y-=rhs.y;
+    z-=rhs.z;
+    return *this;
+  }
+
+  FourVector& operator=(const FourVector& rhs){
+    if(&rhs != this){
+      ct=rhs.ct;
+      x=rhs.x;
+      y=rhs.y;
+      z=rhs.z;
+    }
+    return *this;
+  }
+
+
 };
+
+
+FourVector operator+(const FourVector& lhs, const FourVector& rhs);
+
+FourVector operator-(const FourVector& lhs, const FourVector& rhs);
+
 
 
 

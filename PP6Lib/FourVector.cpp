@@ -94,3 +94,19 @@ Like FourVector::GetFourVectorType(){
     return SPACELIKE;
   }
 }
+
+
+FourVector operator+(const FourVector& lhs, const FourVector& rhs){
+  FourVector temp(lhs);
+  temp+=rhs;
+  return temp;
+
+}
+
+FourVector operator-(const FourVector& lhs, const FourVector& rhs){
+  FourVector temp(lhs);
+  temp-=rhs;
+  return temp;
+
+}
+  
