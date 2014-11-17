@@ -47,12 +47,17 @@ void Week3(){
   std::cin>>F.y;
   std::cout<<"enter z component"<<std::endl;
   std::cin>>F.z;
+
+  //output the four length of the input vector
   std::cout<<"Four length=  "<<InvariantLength(F)<<std::endl;
+
+  //boost the vector and get a new boosted vector.
   Boosted=Boost(F,270000000);
 
   //std::cout<<"this is week3"<<std::endl;
   PrintFourVector(Boosted);
   
+  //output the four length after the boost to check it is invariant.
   std::cout<<"After Four Length=  "<<InvariantLength(Boosted)<<std::endl;
 }
 
