@@ -36,10 +36,32 @@ double ThreeVector::getPhi() const{
 }
 
 double ThreeVector::getR() const{
-  return acos(z/(sqrt(x*x+y*y+z*z)));
+   return sqrt(x*x+y*y+z*z);
 }
 
 double ThreeVector::getTheta() const{
-  return sqrt(x*x+y*y+z*z);
+
+  return acos(z/(sqrt(x*x+y*y+z*z)));
 }
 
+void ThreeVector::setPolars(double r, double theta, double phi){
+  x=r*sin(theta)*cos(phi);
+  y=r*sin(theta)*sin(phi);
+  z=r*cos(theta);
+
+}
+
+std::ostream& operator<<(std::ostream& stream, const ThreeVector& Th){
+  stream<<"(";
+    stream<<Th.getX()<<","<<Th.getY()<<","<<Th.getZ()<<")";
+    return stream;
+      }
+
+std::istream& operator>>(std::istream& stream, ThreeVector& Th){
+  double Xx,Yy,Zz;
+  stream>>Xx>>Yy>>Zz;
+  Th.setX(Xx);
+  Th.setY(Yy);
+  Th.setZ(Zz);
+  return stream;
+}

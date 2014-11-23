@@ -2,6 +2,7 @@
 #include<cmath>
 #include"FourVector.hpp"
 #include"ThreeVector.hpp"
+#include"Particle.hpp"
 
 
 
@@ -16,39 +17,51 @@
 void Week3(){
   
   FourVector *Boosted = 0;
-  // F->SetFourVector();
-  double CT;
-  double X;
-  double Y;
-  double Z;
-
-   std::cout<<"enter time component"<<std::endl;
-     std::cin>>CT;
-     std::cout<<"enter x component"<<std::endl;
-     std::cin>>X;
-     std::cout<<"enter y component"<<std::endl;
-     std::cin>>Y;
-     std::cout<<"enter z component"<<std::endl;
-     std::cin>>Z;
-
-     FourVector *F= new FourVector(CT,X,Y,Z);
-     FourVector A(CT,X,Y,Z);
-     FourVector B(4,3,2,1);
-     FourVector C;
-     C=A-B;
-     C.PrintFourVector();
-     
-     ThreeVector *T = new ThreeVector();
+  FourVector *F = new FourVector();
+  std::cout<<"enter components of four vector"<<std::endl;
+  std::cin>>*F;
+  /*ThreeVector Three;
+  Three=F->getThreeVector();
+  std::cout<<Three<<std::endl;*/
+  
+  /*ThreeVector *T = new ThreeVector();
      ThreeVector* Tfull =new ThreeVector(5,4,3);
-     ThreeVector* Tclone= new ThreeVector(*Tfull);
-     T->PrintThree(); 
-     Tfull->PrintThree();
-     Tclone->PrintThree();
+     // ThreeVector* Tclone= new ThreeVector(*Tfull);
+      T->PrintThree(); 
+      Tfull->PrintThree();
+     //  Tclone->PrintThree();
      std::cout<<"Phi=  "<<Tfull->getPhi()<<std::endl;
      std::cout<<"R=   "<<Tfull->getR()<<std::endl;
      std::cout<<"Theta=   "<<Tfull->getTheta()<<std::endl;
      
+     T->setPolars(7.07,1.132,0.674);
      
+     T->PrintThree();
+     std::cout<<"----------------------------------"<<std::endl;
+     
+     ThreeVector O(5,4,3);
+     ThreeVector D(6,7,8);
+     O+=D;
+     std::cout<<"O+=D=  "<<std::endl;
+     O.PrintThree();
+     O-=D;
+     std::cout<<"O-=D=  "<<std::endl;
+     O.PrintThree();
+     O*=3;
+     std::cout<<"O*3=  "<<std::endl;
+     O.PrintThree();
+     O/=3;
+     std::cout<<"O/3=  "<<std::endl;
+     O.PrintThree();
+     
+     std::cout<<O<<std::endl;
+     std::cin>>O;
+     std::cout<<O<<std::endl;*/
+  ThreeVector Th= F->getThreeVector();
+  Particle *B0= new Particle(511,5279.58,Th);
+  std::cout<<"PDG code=  "<<B0->getPDGCode()<<std::endl;
+  std::cout<<"Energy=  "<<B0->getEnergy()<<std::endl;
+  
   //output the four length of the input vector
   std::cout<<"Four length=  "<<F->GetInvariantLength()<<std::endl;
 

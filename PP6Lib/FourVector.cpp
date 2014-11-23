@@ -76,6 +76,12 @@ double FourVector::GetInvariantLength()const{
   return I;
 }
 
+ThreeVector& FourVector::getThreeVector() const{
+  ThreeVector *Th = new ThreeVector(x,y,z);
+  return *Th;
+  delete Th;
+}
+  
 void FourVector::PrintFourVector() const{
   std::cout<<"ct=  "<<ct<<std::endl;
   std::cout<<"x=  "<<x<<std::endl;
@@ -95,6 +101,21 @@ Like FourVector::GetFourVectorType(){
   }
 }
 
+std::ostream& operator<<(std::ostream& stream, const FourVector& Th){
+  stream<<"(";
+  stream<<Th.getCT()<<","<<Th.getX()<<","<<Th.getY()<<","<<Th.getZ()<<")";
+    return stream;
+      }
+
+std::istream& operator>>(std::istream& stream, FourVector& Th){
+  double Ct,Xx,Yy,Zz;
+  stream>>Ct>>Xx>>Yy>>Zz;
+  Th.Setct(Ct);
+  Th.Setx(Xx);
+  Th.Sety(Yy);
+  Th.Setz(Zz);
+  return stream;
+}
 
 FourVector operator+(const FourVector& lhs, const FourVector& rhs){
   FourVector temp(lhs);
