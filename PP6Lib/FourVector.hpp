@@ -30,7 +30,7 @@ public:
   void PrintFourVector() const;
   Like GetFourVectorType();
   
-  FourVector& operator+=(const FourVector& rhs){
+}  FourVector& operator+=(const FourVector& rhs){
     ct+=rhs.ct;
     x+=rhs.x;
     y+=rhs.y;

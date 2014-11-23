@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cmath>
 #include"FourVector.hpp"
+#include"ThreeVector.hpp"
 
 
 
@@ -36,6 +37,18 @@ void Week3(){
      FourVector C;
      C=A-B;
      C.PrintFourVector();
+     
+     ThreeVector *T = new ThreeVector();
+     ThreeVector* Tfull =new ThreeVector(5,4,3);
+     ThreeVector* Tclone= new ThreeVector(*Tfull);
+     T->PrintThree(); 
+     Tfull->PrintThree();
+     Tclone->PrintThree();
+     std::cout<<"Phi=  "<<Tfull->getPhi()<<std::endl;
+     std::cout<<"R=   "<<Tfull->getR()<<std::endl;
+     std::cout<<"Theta=   "<<Tfull->getTheta()<<std::endl;
+     
+     
   //output the four length of the input vector
   std::cout<<"Four length=  "<<F->GetInvariantLength()<<std::endl;
 

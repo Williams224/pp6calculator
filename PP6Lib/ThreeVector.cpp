@@ -25,5 +25,21 @@ void ThreeVector::PrintThree() const{
   std::cout<<"x= "<<x<<std::endl;
   std::cout<<"y=  "<<y<<std::endl;
   std::cout<<"z=  "<<z<<std::endl;
-
 }
+
+double ThreeVector::getlength() const{
+    return length;
+}
+
+double ThreeVector::getPhi() const{
+  return atan(y/x);
+}
+
+double ThreeVector::getR() const{
+  return acos(z/(sqrt(x*x+y*y+z*z)));
+}
+
+double ThreeVector::getTheta() const{
+  return sqrt(x*x+y*y+z*z);
+}
+
