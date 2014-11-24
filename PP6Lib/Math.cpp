@@ -197,7 +197,7 @@ void LinkSortArray(int n, double *Main, int *Linked1, int *Linked2){  // Sort th
 
 
 void Average(int n, double *A, double& M){  // pass an array, size of array and predefined mean.
-  double Sum;
+  double Sum=0;
   for(int j=0;j<n;j++){
     Sum+=A[j];
   }
@@ -205,7 +205,7 @@ void Average(int n, double *A, double& M){  // pass an array, size of array and 
   M=Sum/N;
 }
 double StandardDeviation(int n, double *A, double M){           //pass the mean, this will not be altered.
-  double Sum;
+  double Sum=0;
   for(int k=0;k<n;k++){
     Sum+=(A[k]-M)*(A[k]-M); 
   }
