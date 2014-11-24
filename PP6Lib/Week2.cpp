@@ -69,7 +69,7 @@ void Week2(){
   int EvPlus[145];
   int EvMinus[145];
   
-  FileReader f("/home/tw/mpagspp6/pp6calculator.git/observedparticles.dat");  //get data
+  FileReader f("/Users/Tim/PhD/Cpp/pp6calculator.git/PP6Lib/observedparticles.dat");  //get data
   srand(time(NULL));
  
  

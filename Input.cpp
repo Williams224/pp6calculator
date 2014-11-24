@@ -9,6 +9,7 @@
 #include "FileReader.hpp"
 #include "Week1.hpp"
 #include "Week2.hpp"
+#include "Week3.hpp"
 //#include "Stat.hpp"
 
 //#include "Math.hpp"
@@ -19,6 +20,7 @@
 int main(){
   std:: string s="stat";
   std:: string c="math";
+  std:: string f="fourvectors";
   std:: string quit="q";
   std::string week;
   //  FileReader F("observedparticles.dat");
@@ -30,6 +32,7 @@ int main(){
     std::cout<<" Input options are: "<<std::endl;
     std::cout<<"Calculator [math] "<<std::endl;
     std::cout<<"Statistical [stat] "<<std::endl;
+    std::cout<<"FourVectors [fourvectors] "<<std::endl;
     std::cin>>week;
     bool match=false;
     if(week.compare(c)==0){
@@ -38,6 +41,10 @@ int main(){
     }
     if(week.compare(s)==0){
       Week2();
+      match=true;
+    }
+    if(week.compare(f)==0){
+      Week3();
       match=true;
     }
     if(week.compare(quit)==0){
