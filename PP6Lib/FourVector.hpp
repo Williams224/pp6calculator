@@ -65,6 +65,7 @@ public:
     x+=rhs.x;
     y+=rhs.y;
     z+=rhs.z;
+    I=InvariantLength();
     return *this;
   }
   FourVector& operator-=(const FourVector& rhs){
@@ -72,6 +73,7 @@ public:
     x-=rhs.x;
     y-=rhs.y;
     z-=rhs.z;
+    I=InvariantLength();
     return *this;
   }
   FourVector& operator *=(double rhs){
@@ -79,6 +81,7 @@ public:
     y=y*rhs;
     z=rhs;
     ct=rhs;
+    I=InvariantLength();
     return *this;
   }
   FourVector& operator /=(double rhs){
@@ -87,6 +90,7 @@ public:
       y=y/rhs;
       z=z/rhs;
       ct=ct/rhs;
+      I=InvariantLength();
       return *this;
     }
     else{
@@ -100,6 +104,7 @@ public:
       x=rhs.x;
       y=rhs.y;
       z=rhs.z;
+      I=InvariantLength();
     }
     return *this;
   }

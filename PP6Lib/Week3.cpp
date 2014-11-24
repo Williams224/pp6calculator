@@ -1,9 +1,11 @@
 #include<iostream>
 #include<cmath>
+#include<cstdlib>
 #include"FourVector.hpp"
 #include"ThreeVector.hpp"
 #include"Particle.hpp"
-
+#include "FileReader.hpp"
+#include "Math.hpp"
 
 
 //calculate invariant length of fourvector
@@ -20,48 +22,7 @@ void Week3(){
   FourVector *F = new FourVector();
   std::cout<<"enter components of four vector"<<std::endl;
   std::cin>>*F;
-  /*ThreeVector Three;
-  Three=F->getThreeVector();
-  std::cout<<Three<<std::endl;*/
-  
-  /*ThreeVector *T = new ThreeVector();
-     ThreeVector* Tfull =new ThreeVector(5,4,3);
-     // ThreeVector* Tclone= new ThreeVector(*Tfull);
-      T->PrintThree(); 
-      Tfull->PrintThree();
-     //  Tclone->PrintThree();
-     std::cout<<"Phi=  "<<Tfull->getPhi()<<std::endl;
-     std::cout<<"R=   "<<Tfull->getR()<<std::endl;
-     std::cout<<"Theta=   "<<Tfull->getTheta()<<std::endl;
-     
-     T->setPolars(7.07,1.132,0.674);
-     
-     T->PrintThree();
-     std::cout<<"----------------------------------"<<std::endl;
-     
-     ThreeVector O(5,4,3);
-     ThreeVector D(6,7,8);
-     O+=D;
-     std::cout<<"O+=D=  "<<std::endl;
-     O.PrintThree();
-     O-=D;
-     std::cout<<"O-=D=  "<<std::endl;
-     O.PrintThree();
-     O*=3;
-     std::cout<<"O*3=  "<<std::endl;
-     O.PrintThree();
-     O/=3;
-     std::cout<<"O/3=  "<<std::endl;
-     O.PrintThree();
-     
-     std::cout<<O<<std::endl;
-     std::cin>>O;
-     std::cout<<O<<std::endl;*/
-  ThreeVector Th= F->getThreeVector();
-  Particle *B0= new Particle(511,5279.58,Th);
-  std::cout<<"PDG code=  "<<B0->getPDGCode()<<std::endl;
-  std::cout<<"Energy=  "<<B0->getEnergy()<<std::endl;
-  
+
   //output the four length of the input vector
   std::cout<<"Four length=  "<<F->GetInvariantLength()<<std::endl;
 
@@ -83,6 +44,66 @@ void Week3(){
   
   //output the four length after the boost to check it is invariant.
   std::cout<<"After Four Length=  "<<Boosted->GetInvariantLength()<<std::endl;
+
+
+
+  //---------------------homework-------------------------------------
+  FileReader f("/Users/Tim/PhD/Cpp/pp6calculator.git/PP6Lib/observedparticles.dat"); //get data from file
+  std::string Run= "run4.dat";
+  std::string muplus="mu+";
+  std::string muminus="mu-";
+  Particle *Muplus[1005];
+  Particle *Muminus[1005];
+  int itplus=0;
+  int itminus=0;
+  if(f.isValid()){
+    std::cout<<"isvalid"<<std::endl;
+    while(f.nextLine()){
+      std::string source=f.getFieldAsString(6);
+      if(source.compare(Run)==0){  //get particles that are in run4.
+	std::string Name=f.getFieldAsString(2);
+	if(Name.compare(muplus)==0){
+	  ThreeVector tmp(f.getFieldAsDouble(3),f.getFieldAsDouble(4),f.getFieldAsDouble(5));
+	  Muplus[itplus]=new Particle(f.getFieldAsInt(1),0.105658,tmp);  //as we are dealing with the same particle use pdgID field to carry event number.
+	  //Eventplus[itplus]=f.getFieldAsInt(1);
+	  itplus++;
+	}
+	if(Name.compare(muminus)==0){
+	  ThreeVector tmp(f.getFieldAsDouble(3),f.getFieldAsDouble(4),f.getFieldAsDouble(5));
+	  Muminus[itminus]=new Particle(f.getFieldAsInt(1),0.105658,tmp);
+	  //Eventminus[itminus]=f.getFieldAsInt(1);
+	  itminus++;
+	}
+      }
+    }
+  }
+  
+  for(int i=0;i<itminus;++i){
+    std::cout<<"Energy=   "<<Muminus[i]->getEnergy()<<std::endl;
+  }
+  double I[200];
+  int Eventplus[1005];
+  int Eventminus[1005];
+  int Iit=0;
+  for(int a=0;a<itminus;++a){
+    for(int b=0;b<itplus;++b){
+      FourVector tmp;
+      tmp=(Muminus[a]->getFourMomentum())+(Muplus[b]->getFourMomentum());
+      std::cout<<tmp<<"   ; "<<sqrt(tmp.getInterval())<<std::endl;
+      I[Iit]=sqrt(tmp.getInterval());
+      Eventplus[Iit]=Muplus[b]->getPDGCode();
+      Eventminus[Iit]=Muminus[a]->getPDGCode();
+      Iit++;
+    }
+  }
+  
+  LinkSortArray((itplus*itminus),I,Eventplus,Eventminus);
+
+std::cout<<"----------Top 10 Invariant Masses----------"<<std::endl;  //output table showing top 10 invariant mass contributions.
+      std::cout<<"Invariant mass |"<<" Mu+ EventNumber| "<<" Mu- EventNumber| "<<std::endl;
+      for(int v=0;v<10;++v){
+	std::cout<<I[v]<<"       |  "<<Eventplus[v]<<"           |  "<<Eventminus[v]<<"           |  "<<std::endl;
+      }
 
   delete F;
   delete Boosted;
