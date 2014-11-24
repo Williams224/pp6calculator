@@ -96,7 +96,7 @@ Like FourVector::GetFourVectorType(){
   else if (InvariantLength()==0){
     return LIGHTLIKE;
   }
-  else if (InvariantLength()>0){
+  else {
     return SPACELIKE;
   }
 }

@@ -41,7 +41,7 @@ void Week2(){
   int index=0;
   int Pselectindex=0;
   int Nselectindex=0;
-  int M=0;
+  //int M=0;
   std::string Name[1005];
   double X[1005];
   double Y[1005];

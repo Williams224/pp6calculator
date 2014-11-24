@@ -5,9 +5,10 @@
 
 class Particle{
 private:
+   int pdgcode;
   double Mass;
   FourVector Momentum;
-  int pdgcode;
+ 
 public:
 
   //get functions

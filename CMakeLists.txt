@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 project(pp6calculator)
 
 include(CheckCXXCompilerFlag)
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU1Clang")
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     check_cxx_compiler_flag(-std=c++11 HAS_GNUSTYLE_CPP11)
     if(HAS_GNUSTYLE_CPP11)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
