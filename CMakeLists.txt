@@ -21,7 +21,7 @@ include_directories(PP6Lib)
 
 add_subdirectory(PP6Lib)
 
-add_executable(Input Input.cpp PP6Lib/Particle.hpp PP6Lib/Particle.cpp PP6Lib/ThreeVector.cpp PP6Lib/ThreeVector.hpp PP6Lib/FourVector.hpp PP6Lib/FourVector.cpp PP6Lib/Week3.hpp PP6Lib/Week3.cpp PP6Lib/FileReader.cpp PP6Lib/FileReader.hpp PP6Lib/Week2.hpp PP6Lib/Week2.cpp PP6Lib/Week1.hpp PP6Lib/Week1.cpp PP6Lib/Math.cpp PP6Lib/Math.hpp)
+add_executable(Input Input.cpp PP6Lib/ParticleInfo.hpp PP6Lib/ParticleInfo.cpp PP6Lib/Week4.cpp PP6Lib/Week4.hpp PP6Lib/Particle.hpp PP6Lib/Particle.cpp PP6Lib/ThreeVector.cpp PP6Lib/ThreeVector.hpp PP6Lib/FourVector.hpp PP6Lib/FourVector.cpp PP6Lib/Week3.hpp PP6Lib/Week3.cpp PP6Lib/FileReader.cpp PP6Lib/FileReader.hpp PP6Lib/Week2.hpp PP6Lib/Week2.cpp PP6Lib/Week1.hpp PP6Lib/Week1.cpp PP6Lib/Math.cpp PP6Lib/Math.hpp)
 
 
 target_link_libraries(Input pp6lib)

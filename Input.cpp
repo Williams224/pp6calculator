@@ -10,6 +10,8 @@
 #include "Week1.hpp"
 #include "Week2.hpp"
 #include "Week3.hpp"
+#include "Week4.hpp"
+//#include "ParticleInfo.hpp"
 //#include "Stat.hpp"
 
 //#include "Math.hpp"
@@ -21,6 +23,7 @@ int main(){
   std:: string s="stat";
   std:: string c="math";
   std:: string f="fourvectors";
+  std::string four="week4";
   std:: string quit="q";
   std::string week;
   //  FileReader F("observedparticles.dat");
@@ -49,6 +52,10 @@ int main(){
     }
     if(week.compare(quit)==0){
       break;
+    }
+    if(week.compare(four)==0){
+      Week4();
+      match=true;
     }
     if(match==false){
       std::cout<<"sorry not an option"<<std::endl;
