@@ -12,38 +12,35 @@ enum Like {
 class  FourVector{  //data structure to hold fourvector
 private:
   double ct;
-  double x;
-  double y;
-  double z;
+  ThreeVector R;
   double I;
   double InvariantLength() const ;
+  
 public:
 
   //constructors
-  FourVector(){ct=0;x=0;y=0;z=0;};   //empty decleration
+  FourVector(){ct=0;R.setX(0);R.setY(0);R.setZ(0);};   //empty decleration
   FourVector(double ct_, double x_, double y_ , double z_)   //take input
-    :ct(ct_),x(x_),y(y_),z(z_){I=InvariantLength();}
-  FourVector(const FourVector& tmp): ct(tmp.ct),x(tmp.x),y(tmp.y),z(tmp.z),I(tmp.I) // clone constructor
+    :ct(ct_){R.setX(x_);R.setY(y_);R.setZ(z_);I=InvariantLength();}
+  FourVector(const FourVector& tmp): ct(tmp.ct),R(tmp.R),I(tmp.I) // clone constructor
   {}
 
-  FourVector(double _ct, const ThreeVector& Three):ct(_ct),x(Three.getX()),y(Three.getY()),z(Three.getZ()),I(InvariantLength()){ }
+    FourVector(double _ct, const ThreeVector& Three):ct(_ct),I(InvariantLength()){ R=Three;}
   //set functions
   void Setct(double CT);
   void Setx(double X);
   void Sety(double Y);
   void Setz(double Z);
   void SetThreeVector(ThreeVector& tmp){
-    x=tmp.getX();
-    y=tmp.getY();
-    z=tmp.getZ();
+    R=tmp;
   }
   //get functions
-  double getY()const {return y;}
-  double getX() const {return x;}
-  double getZ()const {return z;}
+  double getY()const {return R.getY();}
+  double getX() const {return R.getX();}
+  double getZ()const {return R.getZ();}
   double getCT()const {return ct;}
   double getInterval() const{return I;}
-  ThreeVector& getThreeVector()const;
+  ThreeVector getThreeVector()const;
 
   double GetInvariantLength()const ;
   //void SetFourVector();
@@ -56,33 +53,25 @@ public:
   //operator overloads
   FourVector& operator+=(const FourVector& rhs){
     ct+=rhs.ct;
-    x+=rhs.x;
-    y+=rhs.y;
-    z+=rhs.z;
+    R+=rhs.getThreeVector();
     I=InvariantLength();
     return *this;
   }
   FourVector& operator-=(const FourVector& rhs){
     ct-=rhs.ct;
-    x-=rhs.x;
-    y-=rhs.y;
-    z-=rhs.z;
+    R-=rhs.getThreeVector();
     I=InvariantLength();
     return *this;
   }
   FourVector& operator *=(double rhs){
-    x=x*rhs;
-    y=y*rhs;
-    z=rhs;
+    R*=rhs;
     ct=rhs;
     I=InvariantLength();
     return *this;
   }
   FourVector& operator /=(double rhs){
     if(rhs!=0){
-      x=x/rhs;
-      y=y/rhs;
-      z=z/rhs;
+      R/=rhs;
       ct=ct/rhs;
       I=InvariantLength();
       return *this;
@@ -95,9 +84,7 @@ public:
   FourVector& operator=(const FourVector& rhs){
     if(&rhs != this){
       ct=rhs.ct;
-      x=rhs.x;
-      y=rhs.y;
-      z=rhs.z;
+      R=rhs.R;
       I=InvariantLength();
     }
     return *this;

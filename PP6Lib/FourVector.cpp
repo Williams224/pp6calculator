@@ -12,33 +12,33 @@ void FourVector::Setct(double CT){
 }
 
 void FourVector::Setx(double X){
-  x=X;
+  R.setX(X);
   I=InvariantLength();
 }
 
 void FourVector::Sety(double Y){
-  y=Y;
+  R.setY(Y);
   I=InvariantLength();
 }
 
 void FourVector::Setz(double Z){
-  z=Z;
+  R.setZ(Z);
   I=InvariantLength();
 }
 
 
 double FourVector::InvariantLength() const {
-  return (ct*ct-x*x-y*y-z*z);
+  return (ct*ct-R.getX()*R.getX()-R.getY()*R.getY()-R.getZ()*R.getZ());
 }
 
 FourVector* FourVector::Boost(double v){
   FourVector *boosted=new FourVector();
   double beta=v/c;
   double gamma=1/sqrt(1-(beta*beta));
-  boosted->Setct(gamma*(ct-(beta*z)));
-  boosted->Setx(x);
-  boosted->Sety(y);
-  boosted->Setz(gamma*((z)-(beta*ct)));
+  boosted->Setct(gamma*(ct-(beta*R.getZ())));
+  boosted->Setx(R.getX());
+  boosted->Sety(R.getY());
+  boosted->Setz(gamma*((R.getZ())-(beta*ct)));
   //boosted
   return boosted;
 
@@ -47,17 +47,15 @@ double FourVector::GetInvariantLength()const{
   return I;
 }
 
-ThreeVector& FourVector::getThreeVector() const{
-  ThreeVector *Th = new ThreeVector(x,y,z);
-  return *Th;
-  delete Th;
+ThreeVector FourVector::getThreeVector() const{
+  return R;
 }
   
 void FourVector::PrintFourVector() const{
   std::cout<<"ct=  "<<ct<<std::endl;
-  std::cout<<"x=  "<<x<<std::endl;
-  std::cout<<"y=  "<<y<<std::endl;
-  std::cout<<"z=  "<<z<<std::endl;
+  std::cout<<"x=  "<<R.getX()<<std::endl;
+  std::cout<<"y=  "<<R.getY()<<std::endl;
+  std::cout<<"z=  "<<R.getZ()<<std::endl;
 }
 
 Like FourVector::GetFourVectorType(){

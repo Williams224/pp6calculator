@@ -17,7 +17,7 @@ public:
   double getMagMomentum() const;
   double getMassGeV() const {return Mass;}
   int getPDGCode()const{return pdgcode;}
-  ThreeVector& getThreeMomentum() const {return Momentum.getThreeVector();}
+  ThreeVector getThreeMomentum() const {return Momentum.getThreeVector();}
 
   //constructors
   Particle();
