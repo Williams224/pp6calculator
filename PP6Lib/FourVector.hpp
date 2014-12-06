@@ -26,13 +26,7 @@ public:
   FourVector(const FourVector& tmp): ct(tmp.ct),x(tmp.x),y(tmp.y),z(tmp.z),I(tmp.I) // clone constructor
   {}
 
-  FourVector(double _ct, const ThreeVector& Three){
-    ct=_ct;
-    x=Three.getX();
-    y=Three.getY();
-    z=Three.getZ();
-    I=InvariantLength();
-  }
+  FourVector(double _ct, const ThreeVector& Three):ct(_ct),x(Three.getX()),y(Three.getY()),z(Three.getZ()),I(InvariantLength()){ }
   //set functions
   void Setct(double CT);
   void Setx(double X);

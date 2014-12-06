@@ -3,38 +3,9 @@
 #include<cmath>
 
 
-const double c=300000000; //set the speed of light
+const double c=3E8; //set the speed of light
 
 
-/*FourVector::createFourVector(){
-
-  return new FourVector;
-  }*/
-
-/*FourVector::destroyFourVector(FourVector *&q){
-  if(q){
-    delete q;
-    q=0;
-  }
-  }*/
-
-/*FourVector::FourVector(double ct_, double x_, double y_, double z_){
- 
-  }*/
-
-
-
-/*void FourVector::SetFourVector(){
- std::cout<<"enter time component"<<std::endl;
-     std::cin>>ct;
-     std::cout<<"enter x component"<<std::endl;
-     std::cin>>x;
-     std::cout<<"enter y component"<<std::endl;
-     std::cin>>y;
-     std::cout<<"enter z component"<<std::endl;
-     std::cin>>z;
-
-     }*/
 void FourVector::Setct(double CT){
   ct=CT;
   I=InvariantLength();
