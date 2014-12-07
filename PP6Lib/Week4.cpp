@@ -4,7 +4,6 @@
 #include<vector>
 #include"ParticleInfo.hpp"
 #include<iostream>
-#include "Algorithms.hpp"
 #include "Particle.hpp"
 #include "InvMass.hpp"
 #include<algorithm>
@@ -53,7 +52,22 @@ void Week4(){
 
 
   //algorithms exercise 5-----------------------
-  Algorithms();
+  srand(time(NULL));
+  std::cout<<"do something"<<std::endl;
+  std::vector<int> V; 
+  
+  
+  for(int i=0;i<10;i++){
+    V.push_back(rand()%100);	     
+  }
+  std::cout<<"got here"<<std::endl;
+  std::copy(V.begin(), V.end(), std::ostream_iterator<int>(std::cout, "\n"));
+  std::cout<<" Min element= "<< *std::min_element(V.begin(),V.end());
+  std::cout<<" Max element=  "<< *std::max_element(V.begin(),V.end())<<std::endl;
+  std::sort(V.begin(),V.end());
+  std::cout<<"Sorted elements are:  "<<std::endl;
+  std::copy(V.begin(), V.end(), std::ostream_iterator<int>(std::cout, "\n"));
+
   //Invariant mass sort.
 
   std::vector<Particle> Muplus;
@@ -66,9 +80,9 @@ void Week4(){
 	std::string polarity=Observed.GetField<std::string>(2);
 	if(polarity.compare("mu+")==0){
 	  int pdg=Database->getPDGCode(polarity);
-	  Particle *MUPLUS= new Particle(pdg,Database->getMassGeV(pdg),Observed.GetField<int>(1));
+	  Particle *MUPLUS= new Particle(pdg,Database->getMassGeV(pdg),Observed.GetField<int>(1));//new constructor for the Particle class that uses eventnumber as well.
 	  MUPLUS->setThreeMomentum(Observed.GetField<double>(3),Observed.GetField<double>(4),Observed.GetField<double>(5));
-	  Muplus.push_back(*MUPLUS);
+	  Muplus.push_back(*MUPLUS); //fill a vector with a particle object for each identified mu+ and mu-.
 	  delete MUPLUS;
 	}
 	if(polarity.compare("mu-")==0){
@@ -84,23 +98,21 @@ void Week4(){
   std::vector<InvMass> Invariantmasses;
  
   auto mumend=Muminus.end();
-  
   auto mupend=Muplus.end();
   for(auto mup=Muplus.begin();mup!=mupend;++mup){ 
     for(auto mum=Muminus.begin();mum!=mumend;++mum){
       InvMass *Combination = new InvMass(*mup,*mum);
-      Invariantmasses.push_back(*Combination);
-      // Combination;
+      Invariantmasses.push_back(*Combination); //Work out all possible invariant mass combinations and use my InvMass class to store each combination as a new object.
+      // Input each object to a vector container.
     }
   }
-  auto Combegin=Invariantmasses.begin();
-  auto Comend=Invariantmasses.end();
-  for(;Combegin!=Comend;++Combegin){
-    std::cout<<" M=  "<<Combegin->getM()<<" PID1= "<<Combegin->getEvent1()<<" PID2= "<<Combegin->getEvent2()<<std::endl;
-  }
+  //auto Comend=Invariantmasses.end(); 
+  //sort the vector holding the Invariantmasses using the InvSortFunction defined at the top to show sort to compare objects bases on the Invariant mass (M).
   std::sort(Invariantmasses.begin(),Invariantmasses.end(),InvSortFunction);
+ 
   std::cout<<"now sorted---------------------------------"<<std::endl;
-  for(auto Combegin=Invariantmasses.begin();Combegin!=Comend;++Combegin){
-    std::cout<<" M=  "<<Combegin->getM()<<" PID1= "<<Combegin->getEvent1()<<" PID2= "<<Combegin->getEvent2()<<std::endl;
+  auto Combegin=Invariantmasses.begin();
+  for(auto Com=Invariantmasses.begin();Com<Combegin+10;++Com){
+    std::cout<<" M=  "<<Com->getM()<<" PID1= "<<Com->getEvent1()<<" PID2= "<<Com->getEvent2()<<std::endl;
   }
 }
