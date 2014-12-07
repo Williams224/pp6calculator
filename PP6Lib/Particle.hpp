@@ -7,7 +7,9 @@ class Particle{
 private:
    int pdgcode;
   double Mass;
+  int eventnumber;
   FourVector Momentum;
+  
  
 public:
 
@@ -18,11 +20,13 @@ public:
   double getMassGeV() const {return Mass;}
   int getPDGCode()const{return pdgcode;}
   ThreeVector getThreeMomentum() const {return Momentum.getThreeVector();}
+  int getEventNumber(){return eventnumber;}
 
   //constructors
   Particle();
-  Particle(const Particle& tmp);
-  Particle(int _pdgcode, double _mass):pdgcode(_pdgcode),Mass(_mass){};
+  Particle(const Particle& tmp):pdgcode(tmp.pdgcode),Mass(tmp.Mass),eventnumber(tmp.eventnumber),Momentum(tmp.Momentum){}
+  Particle(int _pdgcode, double _mass):pdgcode(_pdgcode),Mass(_mass){}
+  Particle(int _pdgcode, double _mass, int _eventnumber):pdgcode(_pdgcode),Mass(_mass),eventnumber(_eventnumber){}
   Particle(int _pdgcode, double _mass, ThreeVector& _Th):pdgcode(_pdgcode),Mass(_mass){
     Momentum.Setx(_Th.getX());
     Momentum.Sety(_Th.getY());
@@ -44,6 +48,7 @@ public:
   void setPDGCode(int _pdgcode){pdgcode=_pdgcode;}
   void setThreeMomentum(ThreeVector& _Th);
   void setThreeMomentum(double _x, double _y, double _z);
+  void setEventNumber(int _eventnumber){eventnumber=_eventnumber;}
 };
 
 #endif

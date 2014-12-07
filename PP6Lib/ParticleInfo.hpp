@@ -35,9 +35,7 @@ class ParticleInfo {
 	particleMassGeV.insert(std::make_pair(Input.GetField<int>(2),Input.GetField<double>(4)));
       }
 			    
-      ///std::string name=("B+");
-      //PartIdCont::iterator p = particleIds.find(name);
-      //std::cout<<(*p).first<<std::endl;
+     
     }
   }
       

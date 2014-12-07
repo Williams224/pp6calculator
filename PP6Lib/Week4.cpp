@@ -4,6 +4,14 @@
 #include<vector>
 #include"ParticleInfo.hpp"
 #include<iostream>
+#include "Algorithms.hpp"
+#include "Particle.hpp"
+#include "InvMass.hpp"
+#include<algorithm>
+
+bool InvSortFunction(InvMass i, InvMass j){
+  return (i.getM()>j.getM());
+    }
 
 void Week4(){
   FileReader File("/Users/Tim/PhD/Cpp/pp6calculator.git/PP6Lib/PDG.dat");
@@ -42,5 +50,57 @@ void Week4(){
   returnname=Database->getName(code);
   std::cout<<"name= "<<returnname<<std::endl;
   std::cout<<"Mass=  "<<Database->getMassGeV(code)<<std::endl;
+
+
+  //algorithms exercise 5-----------------------
+  Algorithms();
+  //Invariant mass sort.
+
+  std::vector<Particle> Muplus;
+  std::vector<Particle> Muminus;
+  FileReader Observed("/Users/Tim/PhD/Cpp/pp6calculator.git/PP6Lib/observedparticles.dat");
+  if(Observed.isValid()){
+    while(Observed.nextLine()){
+      std::string run=Observed.GetField<std::string>(6);
+      if(run.compare("run4.dat")==0){
+	std::string polarity=Observed.GetField<std::string>(2);
+	if(polarity.compare("mu+")==0){
+	  int pdg=Database->getPDGCode(polarity);
+	  Particle *MUPLUS= new Particle(pdg,Database->getMassGeV(pdg),Observed.GetField<int>(1));
+	  MUPLUS->setThreeMomentum(Observed.GetField<double>(3),Observed.GetField<double>(4),Observed.GetField<double>(5));
+	  Muplus.push_back(*MUPLUS);
+	  delete MUPLUS;
+	}
+	if(polarity.compare("mu-")==0){
+	  int pdg=Database->getPDGCode(polarity);
+	  Particle *MUMINUS= new Particle(pdg,Database->getMassGeV(pdg),Observed.GetField<int>(1));
+	  MUMINUS->setThreeMomentum(Observed.GetField<double>(3),Observed.GetField<double>(4),Observed.GetField<double>(5));
+	  Muminus.push_back(*MUMINUS);
+	  delete MUMINUS;
+	}
+      }
+    }
+  }
+  std::vector<InvMass> Invariantmasses;
+ 
+  auto mumend=Muminus.end();
   
+  auto mupend=Muplus.end();
+  for(auto mup=Muplus.begin();mup!=mupend;++mup){ 
+    for(auto mum=Muminus.begin();mum!=mumend;++mum){
+      InvMass *Combination = new InvMass(*mup,*mum);
+      Invariantmasses.push_back(*Combination);
+      // Combination;
+    }
+  }
+  auto Combegin=Invariantmasses.begin();
+  auto Comend=Invariantmasses.end();
+  for(;Combegin!=Comend;++Combegin){
+    std::cout<<" M=  "<<Combegin->getM()<<" PID1= "<<Combegin->getEvent1()<<" PID2= "<<Combegin->getEvent2()<<std::endl;
+  }
+  std::sort(Invariantmasses.begin(),Invariantmasses.end(),InvSortFunction);
+  std::cout<<"now sorted---------------------------------"<<std::endl;
+  for(auto Combegin=Invariantmasses.begin();Combegin!=Comend;++Combegin){
+    std::cout<<" M=  "<<Combegin->getM()<<" PID1= "<<Combegin->getEvent1()<<" PID2= "<<Combegin->getEvent2()<<std::endl;
+  }
 }
